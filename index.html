@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3ed">
+  <title>Arshi & Amar | Find Your Table</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="site-shell">
+    <header class="hero">
+      <p class="eyebrow">Arshi & Amar</p>
+      <h1>Welcome to our wedding</h1>
+      <p class="hero-script">Find your table</p>
+      <p class="intro">Search your name below to find your table and the people seated with you.</p>
+    </header>
+
+    <figure class="couple-photo">
+      <img src="assets/couple-beach.png" alt="Arshi and Amar walking together along the beach" onerror="this.onerror=null;this.src='file:///Users/riddhishpandya/Downloads/DE8E108D-3BC6-4E9C-B726-E6F85792376E.PNG'">
+    </figure>
+
+    <section class="lookup-section" aria-labelledby="lookup-title">
+      <div class="section-heading">
+        <p class="eyebrow">Your seat awaits</p>
+        <h2 id="lookup-title">Find your table</h2>
+      </div>
+      <label class="search-field">
+        <span class="sr-only">Search guest name</span>
+        <input id="guestSearch" type="search" autocomplete="off" placeholder="Type your name…" aria-describedby="searchHint">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+      </label>
+      <p id="searchHint" class="search-hint">Start typing a first or last name.</p>
+      <div id="searchResults" class="search-results" aria-live="polite"></div>
+    </section>
+
+    <section class="chart-section" aria-labelledby="chart-title">
+      <div class="section-heading compact-heading">
+        <p class="eyebrow">The room</p>
+        <h2 id="chart-title">Seating chart</h2>
+      </div>
+      <div class="chart-frame">
+        <img src="assets/seating-chart.png" alt="Wedding seating chart showing tables 1 through 14 around the dance floor" onerror="this.onerror=null;this.src='file:///var/folders/nt/4s06ljsj2pv5qfm758r3g1q00000gn/T/codex-clipboard-419e7e22-127c-4f80-9d5a-61add24829f0.png'">
+      </div>
+    </section>
+
+    <section class="list-section" aria-labelledby="list-title">
+      <div class="section-heading">
+        <p class="eyebrow">Everyone at the celebration</p>
+        <h2 id="list-title">Full seating list</h2>
+      </div>
+      <div id="tableList" class="table-list"></div>
+    </section>
+
+    <footer class="footer">With love, Arshi & Amar</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

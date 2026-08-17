@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#ffffff">
+  <title>Arshi & Amar | Photo Groups</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="site-shell">
+    <header class="hero">
+      <p class="eyebrow">Arshi & Amar</p>
+      <h1>Wedding photo groups</h1>
+      <p class="hero-script">Find your photos</p>
+      <p class="intro">Search your name to see every group you are part of, or use the current group control while photos are being organized.</p>
+    </header>
+
+    <section class="current-section" aria-labelledby="current-title">
+      <div class="section-heading">
+        <p class="eyebrow">Photographer’s view</p>
+        <h2 id="current-title">Current group</h2>
+      </div>
+      <label class="select-field">
+        <span class="sr-only">Choose current photo group</span>
+        <select id="currentGroup"></select>
+      </label>
+      <article id="currentCard" class="current-card" aria-live="polite"></article>
+    </section>
+
+    <section class="lookup-section" aria-labelledby="lookup-title">
+      <div class="section-heading">
+        <p class="eyebrow">Your moments</p>
+        <h2 id="lookup-title">Find your photo groups</h2>
+      </div>
+      <label class="search-field">
+        <span class="sr-only">Search guest name</span>
+        <input id="personSearch" type="search" autocomplete="off" placeholder="Type your name…" aria-describedby="searchHint">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+      </label>
+      <p id="searchHint" class="search-hint">Search by first or last name.</p>
+      <div id="searchResults" class="search-results" aria-live="polite"></div>
+    </section>
+
+    <section class="list-section" aria-labelledby="list-title">
+      <div class="section-heading">
+        <p class="eyebrow">In order</p>
+        <h2 id="list-title">All photo groups</h2>
+      </div>
+      <div id="groupList" class="group-list"></div>
+    </section>
+
+    <footer class="footer">With love, Arshi & Amar</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

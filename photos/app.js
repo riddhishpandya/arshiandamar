@@ -56,7 +56,7 @@ const groups = [
   [54, 'Text Photo 17', ['Jenner Cole', 'Nikeeya Cole']],
   [55, 'Text Photo 18', ['Sashin Ramsaywack', 'Esha Puran']],
   [56, 'Text Photo 19', ['Sataish Gurraya', 'Suzy Gurraya']]
-].map(([order, label, people, note = '']) => ({ order, label, people, note }));
+].map(([order, label, people, note = ''], index) => ({ order, displayOrder: index + 1, label, people, note }));
 
 const personSearch = document.querySelector('#personSearch');
 const searchResults = document.querySelector('#searchResults');
@@ -67,7 +67,7 @@ function normalize(value) {
 }
 
 function groupTitle(group) {
-  return group.note || `Group ${group.order}`;
+  return `Group ${group.displayOrder}`;
 }
 
 function guestList(people, className = '', highlight = '') {
@@ -97,7 +97,7 @@ function renderSearch(query) {
   matches.forEach(group => {
     const card = document.createElement('article');
     card.className = 'result-card';
-    card.innerHTML = `<div class="result-top"><div><h3>Group ${group.order}</h3>${group.note ? `<p class="group-note">${group.note}</p>` : ''}</div></div>`;
+    card.innerHTML = `<div class="result-top"><div><h3>Group ${group.displayOrder}</h3></div></div>`;
     card.appendChild(guestList(group.people, 'result-people', query));
     searchResults.appendChild(card);
   });
@@ -107,10 +107,10 @@ function renderAllGroups() {
   groups.forEach(group => {
     const card = document.createElement('article');
     card.className = 'group-card';
-    card.dataset.order = group.order;
+    card.dataset.order = group.displayOrder;
     const heading = document.createElement('div');
     heading.className = 'group-card-heading';
-    heading.innerHTML = `<span class="group-number">${group.order}</span><div><h3>${groupTitle(group)}</h3></div>`;
+    heading.innerHTML = `<span class="group-number">${group.displayOrder}</span><div><h3>${groupTitle(group)}</h3></div>`;
     card.appendChild(heading);
     card.appendChild(guestList(group.people));
     groupList.appendChild(card);

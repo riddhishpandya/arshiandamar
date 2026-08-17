@@ -82,6 +82,17 @@ function guestList(people, className = '', highlight = '') {
   return list;
 }
 
+function renderGroupBody(group) {
+  if (group.people.length) return guestList(group.people);
+  if (group.note) {
+    const description = document.createElement('p');
+    description.className = 'group-note';
+    description.textContent = group.note;
+    return description;
+  }
+  return document.createDocumentFragment();
+}
+
 function renderSearch(query) {
   searchResults.replaceChildren();
   if (!query) return;
@@ -112,7 +123,7 @@ function renderAllGroups() {
     heading.className = 'group-card-heading';
     heading.innerHTML = `<span class="group-number">${group.displayOrder}</span><div><h3>${groupTitle(group)}</h3></div>`;
     card.appendChild(heading);
-    card.appendChild(guestList(group.people));
+    card.appendChild(renderGroupBody(group));
     groupList.appendChild(card);
   });
 }

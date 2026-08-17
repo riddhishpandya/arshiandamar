@@ -68,8 +68,8 @@ function normalize(value) {
   return value.toLocaleLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
-function labelFor(group) {
-  return group.label || group.note || `Photo group ${group.order}`;
+function groupTitle(group) {
+  return group.note || `Group ${group.order}`;
 }
 
 function guestList(people, className = '') {
@@ -87,14 +87,8 @@ function renderCurrent(group) {
   currentCard.replaceChildren();
   const top = document.createElement('div');
   top.className = 'current-top';
-  top.innerHTML = `<span class="group-number">${group.order}</span><div><p class="group-kicker">Current photo group</p><h3>${labelFor(group)}</h3></div>`;
+  top.innerHTML = `<span class="group-number">${group.order}</span><div><p class="group-kicker">Current photo group</p><h3>${groupTitle(group)}</h3></div>`;
   currentCard.appendChild(top);
-  if (group.note && group.label) {
-    const note = document.createElement('p');
-    note.className = 'group-note';
-    note.textContent = group.note;
-    currentCard.appendChild(note);
-  }
   currentCard.appendChild(guestList(group.people, 'current-people'));
 }
 
@@ -113,13 +107,7 @@ function renderSearch(query) {
   matches.forEach(group => {
     const card = document.createElement('article');
     card.className = 'result-card';
-    card.innerHTML = `<div class="result-top"><div><span class="result-kicker">Photo group ${group.order}</span><h3>${labelFor(group)}</h3></div><span class="table-badge">Group ${group.order}</span></div>`;
-    if (group.note && group.label) {
-      const note = document.createElement('p');
-      note.className = 'group-note';
-      note.textContent = group.note;
-      card.appendChild(note);
-    }
+    card.innerHTML = `<div class="result-top"><div><span class="result-kicker">Photo group ${group.order}</span><h3>${groupTitle(group)}</h3></div><span class="table-badge">Group ${group.order}</span></div>`;
     card.appendChild(guestList(group.people, 'result-people'));
     searchResults.appendChild(card);
   });
@@ -132,7 +120,7 @@ function renderAllGroups() {
     card.dataset.order = group.order;
     const heading = document.createElement('div');
     heading.className = 'group-card-heading';
-    heading.innerHTML = `<span class="group-number">${group.order}</span><div><h3>${labelFor(group)}</h3>${group.note && group.label ? `<p class="group-note">${group.note}</p>` : ''}</div>`;
+    heading.innerHTML = `<span class="group-number">${group.order}</span><div><h3>${groupTitle(group)}</h3></div>`;
     card.appendChild(heading);
     card.appendChild(guestList(group.people));
     groupList.appendChild(card);
@@ -142,7 +130,7 @@ function renderAllGroups() {
 groups.forEach((group, index) => {
   const option = document.createElement('option');
   option.value = index;
-  option.textContent = `Group ${group.order} — ${labelFor(group)}`;
+  option.textContent = `Group ${group.order}`;
   currentGroup.appendChild(option);
 });
 

@@ -58,8 +58,6 @@ const groups = [
   [56, 'Text Photo 19', ['Sataish Gurraya', 'Suzy Gurraya']]
 ].map(([order, label, people, note = '']) => ({ order, label, people, note }));
 
-const currentGroup = document.querySelector('#currentGroup');
-const currentCard = document.querySelector('#currentCard');
 const personSearch = document.querySelector('#personSearch');
 const searchResults = document.querySelector('#searchResults');
 const groupList = document.querySelector('#groupList');
@@ -82,15 +80,6 @@ function guestList(people, className = '', highlight = '') {
     list.appendChild(item);
   });
   return list;
-}
-
-function renderCurrent(group) {
-  currentCard.replaceChildren();
-  const top = document.createElement('div');
-  top.className = 'current-top';
-  top.innerHTML = `<span class="group-number">${group.order}</span><div><p class="group-kicker">Current photo group</p><h3>${groupTitle(group)}</h3></div>`;
-  currentCard.appendChild(top);
-  currentCard.appendChild(guestList(group.people, 'current-people'));
 }
 
 function renderSearch(query) {
@@ -128,20 +117,6 @@ function renderAllGroups() {
   });
 }
 
-groups.forEach((group, index) => {
-  const option = document.createElement('option');
-  option.value = index;
-  option.textContent = `Group ${group.order}`;
-  currentGroup.appendChild(option);
-});
-
-currentGroup.addEventListener('change', event => {
-  const selected = groups[Number(event.target.value)];
-  renderCurrent(selected);
-  document.querySelectorAll('.group-card').forEach(card => card.classList.toggle('is-current', Number(card.dataset.order) === selected.order));
-});
-
 personSearch.addEventListener('input', event => renderSearch(normalize(event.target.value.trim())));
 
-renderCurrent(groups[0]);
 renderAllGroups();

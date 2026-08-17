@@ -107,7 +107,7 @@ function renderSearch(query) {
   matches.forEach(group => {
     const card = document.createElement('article');
     card.className = 'result-card';
-    card.innerHTML = `<div class="result-top"><div><span class="result-kicker">Photo group ${group.order}</span><h3>${groupTitle(group)}</h3></div><span class="table-badge">Group ${group.order}</span></div>`;
+    card.innerHTML = `<div class="result-top"><div><h3>Group ${group.order}</h3>${group.note ? `<p class="group-note">${group.note}</p>` : ''}</div></div>`;
     card.appendChild(guestList(group.people, 'result-people'));
     searchResults.appendChild(card);
   });

@@ -72,12 +72,13 @@ function groupTitle(group) {
   return group.note || `Group ${group.order}`;
 }
 
-function guestList(people, className = '') {
+function guestList(people, className = '', highlight = '') {
   const list = document.createElement('ul');
   list.className = `people-list ${className}`;
   people.forEach(person => {
     const item = document.createElement('li');
     item.textContent = person;
+    if (highlight && normalize(person).includes(highlight)) item.classList.add('match');
     list.appendChild(item);
   });
   return list;
@@ -108,7 +109,7 @@ function renderSearch(query) {
     const card = document.createElement('article');
     card.className = 'result-card';
     card.innerHTML = `<div class="result-top"><div><h3>Group ${group.order}</h3>${group.note ? `<p class="group-note">${group.note}</p>` : ''}</div></div>`;
-    card.appendChild(guestList(group.people, 'result-people'));
+    card.appendChild(guestList(group.people, 'result-people', query));
     searchResults.appendChild(card);
   });
 }
